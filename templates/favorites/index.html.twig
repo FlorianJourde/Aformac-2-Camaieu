@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+  <div class="row">
+    {% for favoriteColor in favoriteColors %}
+      {% for color in colors %}
+        {% if favoriteColor.id == color.id %}
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <a href="../color/{{ favoriteColor.id }}">
+              <div class="thumbnail">
+                <div class="thumbnail-colors">
+                  <img src="/images/{{ color.image }}">
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+  </div>
+</div>
+
+<div class="endpage"></div>
+
+{% endblock %}

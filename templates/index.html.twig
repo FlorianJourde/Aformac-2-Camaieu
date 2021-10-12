@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+  <div class="row">
+  {% for color in colors %}
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+      <a href="../color/{{ color.id }}">
+        <div class="thumbnail">
+          <div class="thumbnail-colors">
+            <div class="thumbnail-color" style="background-color: {{ color.color1 }}"></div>
+            <div class="thumbnail-color" style="background-color: {{ color.color2 }}"></div>
+            <div class="thumbnail-color" style="background-color: {{ color.color3 }}"></div>
+            <div class="thumbnail-color" style="background-color: {{ color.color4 }}"></div>
+          </div>
+          {% if app.user %}
+            {% for favoriteColor in favoriteColors %}
+              {% if color.id == favoriteColor.id %}
+              <a href="javascript:;" class="heart">
+                <h5><i class="fas fa-heart heart-full"></i></h5>
+              </a>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+  </div>
+</div>
+
+<div class="endpage"></div>
+
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="single">
+        <div class="row single-elements">
+          <div class="single-image col-xl-8 col-lg-7 col-md-6 d-md-block d-none" id="wallpaper">
+            <img id="zoom-background" src="/images/{{ color.image }}">
+          </div>
+          <div class="single-colors col-xl-4 col-lg-5 col-md-6">
+            <div class="single-color" style="background-color: {{ color.color1 }}">
+              <p onclick="copy('{{ color.color1 }}', this)" class="color-name">{{ color.color1 }}</p>
+            </div>
+            <div class="single-color" id="{{ color.color2 }}" style="background-color: {{ color.color2 }}">
+              <p onclick="copy('{{ color.color2 }}', this)" class="color-name">{{ color.color2 }}</p>
+            </div>
+            <div class="single-color" id="{{ color.color3 }}" style="background-color: {{ color.color3 }}">
+              <p onclick="copy('{{ color.color3 }}', this)" class="color-name">{{ color.color3 }}</p>
+            </div>
+            <div class="single-color" id="{{ color.color4 }}" style="background-color: {{ color.color4 }}">
+              <p onclick="copy('{{ color.color4 }}', this)" class="color-name">{{ color.color4 }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row single-title">
+            <h3>{{ color.name }}</h3>
+              {% if app.user %}
+                {% set isFavorite = false %}
+                {% for favoriteColor in favoriteColors %}
+                  {% if color.id == favoriteColor.id %}
+                      {% set isFavorite = true %}
+                  {% endif %}
+                {% endfor %}
+                {% if isFavorite == true %}
+                  <a href="javascript:;" class="heart">
+                      <h5><i class="fas fa-heart heart-full"></i></h5>
+                  </a>
+                {% else %}
+                  <a href="javascript:;" class="heart">
+                      <h5><i class="far fa-heart heart-empty"></i></h5>
+                  </a>
+                {% endif %}
+              {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row last-thumbnail-3 last-thumbnail-2 last-thumbnail-1">
+    {% set actualColorId = color.id %}
+    {% set color1, color2, color3, color4 = color.color1, color.color2, color.color3, color.color4 %}
+    {% for color in colors %}
+      {% if color1 == color.color1 or color1 == color.color2 or color1 == color.color3 or color1 == color.color4 %}
+        {% if color.id != actualColorId %}
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <a href="../color/{{ color.id }}">
+              <div class="thumbnail-image">
+                <div class="thumbnail-colors" style="background-color: {{ color1 }}">
+                  <div class="single-image">
+                    <img src="/images/{{ color.image }}">
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endif %}
+      {% elseif color2 == color.color1 or color2 == color.color2 or color2 == color.color3 or color2 == color.color4 %}
+        {% if color.id != actualColorId %}
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <a href="../color/{{ color.id }}">
+              <div class="thumbnail-image">
+                <div class="thumbnail-colors" style="background-color: {{ color2 }}">
+                  <div class="single-image">
+                    <img src="/images/{{ color.image }}">
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endif %}
+      {% elseif color3 == color.color1 or color3 == color.color2 or color3 == color.color3 or color3 == color.color4 %}
+        {% if color.id != actualColorId %}
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <a href="../color/{{ color.id }}">
+              <div class="thumbnail-image">
+                <div class="thumbnail-colors" style="background-color: {{ color3 }}">
+                  <div class="single-image">
+                    <img src="/images/{{ color.image }}">
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endif %}
+      {% elseif color4 == color.color1 or color4 == color.color2 or color4 == color.color3 or color4 == color.color4 %}
+        {% if color.id != actualColorId %}
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <a href="../color/{{ color.id }}">
+              <div class="thumbnail-image">
+                <div class="thumbnail-colors" style="background-color: {{ color4 }}">
+                  <div class="single-image">
+                    <img src="/images/{{ color.image }}">
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<div class="endpage"></div>
+
+{% endblock %}

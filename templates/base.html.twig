@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{% block title %}Camaïeu{% endblock %}</title>
+    {# Run `composer require symfony/webpack-encore-bundle`
+       and uncomment the following Encore helpers to start using Symfony UX #}
+    {% block stylesheets %}
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="{{ asset('styles.css') }}">
+      <link rel="icon" href="/images/website-logo.png">
+      {#{{ encore_entry_link_tags('app') }}#}
+    {% endblock %}
+
+    {% block javascripts %}
+      <script src="{{ asset('jquery.js') }}"></script>
+      <script src="{{ asset('medium-zoom/dist/medium-zoom.min.js') }}"></script>
+      {#{{ encore_entry_script_tags('app') }}#}
+    {% endblock %}
+  </head>
+  <body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/index"><img id="website-logo" src="/images/website-logo.png" alt=""> Camaïeu</a>
+        <span>
+          {% if app.user %}
+            <a class="nav-link navbar-text" href="/favorites" style="color:#CC016B"><i class="fas fa-heart heart-full nav-icon"></i>Favoris</a>
+            <a class="nav-link navbar-text" href="{{ path('app_logout')}}"><i class="fas fa-sign-out-alt nav-icon"></i>Se déconnecter</a>
+          {% else %}
+            <a class="nav-link navbar-text" href="/register"><i class="fas fa-plus-square nav-icon"></i>S'inscrire</a>
+            <a class="nav-link navbar-text" href="/login"><i class="fas fa-sign-in-alt nav-icon"></i>S'authentifier</a>
+          {% endif %}
+        </span>
+      </div> 
+    </nav>
+
+    {% block body %}{% endblock %}
+
+    <script src="{{ asset('script.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/3297382b62.js" crossorigin="anonymous"></script>
+    <script src="node_modules/medium-zoom/dist/medium-zoom.min.js"></script>
+  </body>
+</html>

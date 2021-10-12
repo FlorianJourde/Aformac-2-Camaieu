@@ -1,0 +1,15 @@
+camaieu
+  palette
+    id (int)
+    name (varchar_255)
+    image (varchar_255)
+    color_1 (varchar_255)
+    color_2 (varchar_255)
+    color_3 (varchar_255)
+    color_4 (varchar_255)
+  user
+    id (int)
+    name (varchar_255)
+  favorites
+    user_id (int)
+    color_id (int)
